@@ -136,6 +136,7 @@ GameObject:
   - component: {fileID: 195194340}
   - component: {fileID: 195194338}
   - component: {fileID: 195194337}
+  - component: {fileID: 195194339}
   m_Layer: 6
   m_Name: PlayerPink
   m_TagString: Untagged
@@ -180,6 +181,22 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!58 &195194339
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 195194336}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.084991634}
+  serializedVersion: 2
+  m_Radius: 0.6118397
 --- !u!114 &195194340
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -348,6 +365,7 @@ GameObject:
   - component: {fileID: 710897075}
   - component: {fileID: 710897074}
   - component: {fileID: 710897073}
+  - component: {fileID: 710897076}
   m_Layer: 6
   m_Name: PlayerBlue
   m_TagString: Untagged
@@ -487,6 +505,22 @@ MonoBehaviour:
   OnCrouchEvent:
     m_PersistentCalls:
       m_Calls: []
+--- !u!58 &710897076
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 710897070}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.12262368}
+  serializedVersion: 2
+  m_Radius: 0.6118398
 --- !u!1 &810369650
 GameObject:
   m_ObjectHideFlags: 0
@@ -1072,7 +1106,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1406467633}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2e8fea0efb1925e60b0002ba4b7ef595, type: 3}
+  m_Script: {fileID: 11500000, guid: 0dfeec21b120ee15da828baeb4a68d17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   blue: {fileID: 710897070}
