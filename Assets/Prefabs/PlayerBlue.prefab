@@ -127,13 +127,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 7127486003057744303}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d3e11953cab2f6f58960f77b9d99441, type: 3}
+  m_Script: {fileID: 11500000, guid: 4a3ab3233fa071737bafcc77d0619a97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_JumpForce: 800
   m_CrouchSpeed: 0.36
   m_MovementSmoothing: 0.05
-  m_AirControl: 0
+  m_AirControl: 1
   m_WhatIsGround:
     serializedVersion: 2
     m_Bits: 4294967295
