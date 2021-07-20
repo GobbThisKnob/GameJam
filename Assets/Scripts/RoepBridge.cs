@@ -12,17 +12,18 @@ public class RoepBridge : MonoBehaviour{
 
     private LineRenderer lineRenderer;
     private List<RopeSegment> ropeSegments = new List<RopeSegment>();
-    private float ropeSegLen = 0.25f;
-    private int segmentLength = 35;
+    public float ropeSegLen = 0.25f;
+    public int segmentLength = 35;
     private float lineWidth = 0.1f;
 
     // Use this for initialization
     void Start()
     {
+        Vector3 offset = new Vector3(0, 0.5f, 0);
         StartPoint = blue.GetComponent<Transform>();
         EndPoint = pink.GetComponent<Transform>();
         this.lineRenderer = this.GetComponent<LineRenderer>();
-        Vector3 ropeStartPoint = StartPoint.position;
+        Vector3 ropeStartPoint = StartPoint.position + offset;
 
         for (int i = 0; i < segmentLength; i++)
         {
@@ -45,7 +46,7 @@ public class RoepBridge : MonoBehaviour{
     private void Simulate()
     {
         // SIMULATION
-        Vector2 forceGravity = new Vector2(0f, -1f);
+        Vector2 forceGravity = new Vector2(0f, -0.4f);
 
         for (int i = 1; i < this.segmentLength; i++)
         {
@@ -67,9 +68,16 @@ public class RoepBridge : MonoBehaviour{
     private void ApplyConstraint()
     {
         Vector2 tension = StartPoint.position - EndPoint.position;
+        tension.x = tension.x*0.7f;
         if( tension.magnitude > ropeSegLen*segmentLength){
-            blue.GetComponent<Rigidbody2D>().AddForce(-1 * tension);
-            pink.GetComponent<Rigidbody2D>().AddForce(tension);
+            if (blue.GetComponent<CharacterController2D>().m_Grounded)
+                pink.GetComponent<Rigidbody2D>().AddForce(tension.normalized);
+            if (pink.GetComponent<CharacterController2D>().m_Grounded) 
+                blue.GetComponent<Rigidbody2D>().AddForce(-1f * tension.normalized);
+            if (!blue.GetComponent<CharacterController2D>().m_Grounded && !pink.GetComponent<CharacterController2D>().m_Grounded){
+                pink.GetComponent<Rigidbody2D>().AddForce(tension.normalized);
+                blue.GetComponent<Rigidbody2D>().AddForce(-1f * tension.normalized);
+                }
         }
         //Constrant to First Point 
         RopeSegment firstSegment = this.ropeSegments[0];
@@ -79,7 +87,7 @@ public class RoepBridge : MonoBehaviour{
 
         //Constrant to Second Point 
         RopeSegment endSegment = this.ropeSegments[this.ropeSegments.Count - 1];
-        endSegment.posNow = this.EndPoint.position;
+        endSegment.posNow = this.EndPoint.position + new Vector3(0, 0.5f, 0);
         this.ropeSegments[this.ropeSegments.Count - 1] = endSegment;
 
         for (int i = 0; i < this.segmentLength - 1; i++)
@@ -103,9 +111,9 @@ public class RoepBridge : MonoBehaviour{
             Vector2 changeAmount = changeDir * error;
             if (i != 0)
             {
-                firstSeg.posNow -= changeAmount * 0.5f;
+                firstSeg.posNow -= changeAmount * 0.9f;
                 this.ropeSegments[i] = firstSeg;
-                secondSeg.posNow += changeAmount * 0.5f;
+                secondSeg.posNow += changeAmount * 0.9f;
                 this.ropeSegments[i + 1] = secondSeg;
             }
             else

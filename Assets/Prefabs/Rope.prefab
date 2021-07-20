@@ -144,3 +144,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   blue: {fileID: 7127486003057744303, guid: 1e2e3b004bf22de259abfaea1e8f05c3, type: 3}
   pink: {fileID: 2779225066568825804, guid: 061bb63a6358b7c1ebfe3dfc5d19ff47, type: 3}
+  ropeSegLen: 0.25
+  segmentLength: 28
