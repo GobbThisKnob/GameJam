@@ -31,8 +31,9 @@ public class CharacterController2D : MonoBehaviour
         public BoolEvent OnCrouchEvent;
         private bool m_wasCrouching = false;
 
-    private Transform platform;
+        private Transform platform;
         private CircleCollider2D circleCollider2D;
+        [SerializeField] private LayerMask platform_layer;
 
         void Start()
     {
@@ -74,12 +75,12 @@ public class CharacterController2D : MonoBehaviour
         {
                 isOnPlatform();
                 if (platform != null) transform.parent = platform;
-        else                  transform.parent = null;
+                else transform.parent = null;
         }
 
         private void isOnPlatform()
         {
-            RaycastHit2D hit = Physics2D.CircleCast(circleCollider2D.bounds.center, circleCollider2D.radius, Vector2.down, 0.1f, m_WhatIsGround);
+            RaycastHit2D hit = Physics2D.CircleCast(circleCollider2D.bounds.center, circleCollider2D.radius, Vector2.down, 0.1f, platform_layer);
             if (hit) this.platform = hit.collider.gameObject.transform;
             else this.platform = null;
         }
